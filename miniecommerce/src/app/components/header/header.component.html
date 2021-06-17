@@ -1,0 +1,91 @@
+
+<header id="main-header">
+		
+    <a id="logo-header" href="#">
+        <span class="site-name">Mini E-Commerce</span>
+        
+    </a> <!-- / #logo-header -->
+    
+    <nav>
+        <ul>
+            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Product
+              </button>   
+             
+            <li> <a (click)="inicio()">E Commerce</a></li>
+            <li><a (click)="dashboard()">Dashboard</a></li>
+            
+        </ul>
+    </nav><!-- / nav -->
+
+</header><!-- / #main-header -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="forms">
+                <label for="fname">Product identification number:</label>
+                <input type="number" [class.is-danger]="forms.get('productId').invalid && forms.get('productId').dirty"  formControlName="productId"  id="productId" name="productId" class="form-control">
+
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Product identification number should be greater than 0 </strong>{{forms.get("productId").errors | json}}.
+                </div>
+
+                <label for="fname">Name:</label>
+                <input type="text" [class.is-danger]="forms.get('name').invalid && forms.get('name').dirty"  formControlName="name" id="name" name="name" class="form-control">
+
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Product name cannot be empty. Max: 100 characters </strong> {{forms.get("name").errors | json}}.
+                </div>
+
+                <label for="fname">Description:</label>
+                <input type="text" [class.is-danger]="forms.get('description').invalid && forms.get('description').dirty" formControlName="description" id="description" name="description"class="form-control">
+
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Product description cannot be empty. Max 280 characters </strong>{{forms.get("description").errors | json}}.
+                </div>
+
+                <label for="fname">Base Price:</label>
+                <input type="number" [class.is-danger]="forms.get('basePrice').invalid && forms.get('basePrice').dirty" formControlName="basePrice"  id="basePrice" name="basePrice"class="form-control">
+
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Base Price cannot be empty </strong>{{forms.get("basePrice").errors | json}}.
+                </div>
+
+                <label for="fname">Tax Rate:</label>
+                <input type="number" [class.is-danger]="forms.get('taxRate').invalid && forms.get('taxRate').dirty"  formControlName="taxRate"  id="taxRate" name="taxRate"class="form-control">
+
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Values between 0 and 1 </strong>{{forms.get("taxRate").errors | json}}.
+                </div>
+
+                <label for="fname">Product Status:</label>
+                <input type="text" [class.is-danger]="forms.get('productStatus').invalid && forms.get('productStatus').dirty" formControlName="productStatus" id="productStatus" name="productStatus"class="form-control">
+
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Poduct Status cannot be empty </strong>{{forms.get("productStatus").errors | json}}.
+                </div>
+
+                <label for="fname">Inventory Quantity:</label>
+                <input type="number" [class.is-danger]="forms.get('inventoryQuantity').invalid && forms.get('inventoryQuantity').dirty" formControlName="inventoryQuantity"  id="inventoryQuantity" name="inventoryQuantity"class="form-control">
+              
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Inventory Quantity should be greater than 0</strong>{{forms.get("inventoryQuantity").errors | json}}. 
+                </div>
+              
+              </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" [disabled]="forms.invalid" (click)="addProducts()" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+   
+  </div>

@@ -1,0 +1,87 @@
+<app-header></app-header><br>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Products</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="tetx-center">
+                        
+                        <th>Product Name</th>
+                        <th>Product Description</th>
+                        <th>Base price</th>
+                        <th>Tax Rate</th>
+                        <th>Product Status</th>
+                        <th>Inventory Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Products of Product" class="text-center">
+                        
+                        <td>{{Products.name}}</td>
+                        <td>{{Products.description}}</td>
+                        <td>{{Products.basePrice}}</td>
+                        <td>{{Products.taxRate}}</td>
+                        <td>{{Products.productStatus}}</td>
+                        <td>{{Products.inventoryQuantity}}</td>
+                        
+                        <td><button type="button" (click)="deleteProducts(Products.productId)" class="btn btn-outline-danger">Delete</button>
+                            <button type="button" (click)="getproductId(Products)" style="margin-left: 10px" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                Edit
+                              </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" >
+            <form *ngFor ="let products of Productv">
+            
+                <label for="fname">Name:</label>
+                <input type="text" [(ngModel)]="products.name" [ngModelOptions]="{standalone: true}" id="Name" name="Name" class="form-control">
+        
+                <label for="fname">Description:</label>
+                <input type="text"  [(ngModel)]="products.description" [ngModelOptions]="{standalone: true}" id="Description" name="Description"class="form-control">
+        
+                <label for="fname">Base Price:</label>
+                <input type="number" [(ngModel)]="products.basePrice" [ngModelOptions]="{standalone: true}" id="BasePrice" name="BasePrice"class="form-control">
+        
+                <label for="fname">Tax Rate:</label>
+                <input type="number" [(ngModel)]="products.taxRate" [ngModelOptions]="{standalone: true}" id="TaxRate" name="TaxRate"class="form-control">
+        
+                <label for="fname">Product Status:</label>
+                <input type="text" [(ngModel)]="products.productStatus" [ngModelOptions]="{standalone: true}" id="ProductStatus" name="ProductStatus"class="form-control">
+        
+                <label for="fname">Inventory Quantity:</label>
+                <input type="number" [(ngModel)]="products.inventoryQuantity" [ngModelOptions]="{standalone: true}" id="InventoryQuantity" name="InventoryQuantity"class="form-control">
+                
+              <!---  <button type="button"(click)="edit(product)" class="btn btn-outline-warning">Add</button>  -->  
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" (click)="updateProducts(products)" class="btn btn-primary">Edit</button>
+
+            </form>
+
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+    </div>
+   
+  </div>

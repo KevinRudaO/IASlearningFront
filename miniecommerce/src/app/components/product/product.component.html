@@ -1,0 +1,34 @@
+<app-headerproduct></app-headerproduct>
+
+
+    <div class="container">
+        <div class="row">
+          <div class="col-md-2 my-3 mx-3" *ngFor="let Products of Product">
+            <mdb-card>
+              
+              <mdb-card-body>
+
+                <mdb-card-img>
+                  <img src="{{img}}" style="width: 110px; height:90px" alt="">
+
+                </mdb-card-img>
+                <mdb-card-title>
+                  <h4>{{Products.name}}</h4>
+                </mdb-card-title>
+      
+                <mdb-card-text>
+                  {{Products.description}}
+                </mdb-card-text><br>
+
+                <mdb-card-price>
+                  Price: ${{Products.basePrice}}
+                  </mdb-card-price>
+
+              </mdb-card-body>
+             </mdb-card>
+             <br><button (click)="addCart(Products)" type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Add to cart</button>
+             
+          </div>
+         
+        </div>
+      </div>

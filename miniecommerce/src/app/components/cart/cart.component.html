@@ -1,0 +1,81 @@
+<app-headerproduct></app-headerproduct><br>
+<div class="text-center"><h3>Cart</h3></div><br>
+
+<div class="container"> 
+
+    <div class="row">
+        <div class="col-md-2 my-3 mx-3" *ngFor="let Products of arraypro">
+          <mdb-card>
+            
+            <mdb-card-body>
+              <mdb-card-img>
+                <img src="{{img}}" style="width: 110px; height:90px" alt="">
+              </mdb-card-img>
+
+            <mdb-card-title>
+                <h4>{{Products.name}}</h4>
+              </mdb-card-title>
+    
+              <mdb-card-text>
+                {{Products.description}}
+              </mdb-card-text><br>
+
+              <mdb-card-price>
+                Price: ${{Products.basePrice}}
+                </mdb-card-price><br> 
+                <button type="button" (click)="deleteLocal(Products)" class="btn btn-outline-danger" data-bs-dismiss="modal">Delete</button>
+            </mdb-card-body>
+           </mdb-card>
+           
+           
+        </div>
+        <h5>Total: ${{value}}</h5>
+        <h5>Discount: ${{discount}}</h5>
+        
+        
+        
+      </div>
+      <div class="center">
+      <br> <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+        Pay Order list </button></div>
+</div>
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Client Information</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="form"  >
+            <div class="text-center">Amount to be paid: ${{price}}</div>
+
+              <label for="fname">Client Identification:</label>
+              <input type="number" [class.is-danger]="form.get('clientId').invalid && form.get('clientId').dirty" formControlName="clientId"   id="clientId" name="clientId" class="form-control" required>
+              
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Your identification number should be greater than 0 </strong>{{form.get("clientId").errors | json}}. 
+              </div>
+              
+              <label for="fname">Name:</label>
+              <input type="text" formControlName="clientName" id="clientName" name="clientName" class="form-control">
+              
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Required </strong>{{form.get("clientName").errors | json}}. 
+              </div>
+
+          </form>
+
+      </div>
+      <div class="modal-footer">
+
+        
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       <button [disabled]="form.invalid" (click)="addOrders()" type="button" class="btn btn-primary">Pay</button>
+      </div>
+      
+    </div>
+  </div>
+ 
+</div>
